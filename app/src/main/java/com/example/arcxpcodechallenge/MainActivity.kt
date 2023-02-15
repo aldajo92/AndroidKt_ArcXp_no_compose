@@ -7,6 +7,8 @@ import androidx.activity.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.squareup.moshi.Json
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response
@@ -48,7 +50,9 @@ class DataRepositoryImpl(private val api: WashingtonPostAPI = RetrofitClient.api
     override fun getData(): Flow<List<WashingtonPostData>?> = flow {
         // TODO: Improve this later
         val washingtonPostData = api.washingtonGetData()
-        emit(washingtonPostData.posts.map { it.toWashingtonPostData() })
+        val body = washingtonPostData.body()
+        Log.i("DataRepositoryImpl", "washingtonPostData: $body")
+        emit(washingtonPostData.body()?.posts?.map { it.toWashingtonPostData() })
 //        if (washingtonPostData.isSuccessful) {
 //        } else emit(null)
     }
@@ -66,13 +70,18 @@ interface DataRepository {
 }
 
 data class WashingtonPostData(
-    val id: Int, val title: String, val content: String
+    val id: Int = -1, val title: String = "", val content: String = ""
 )
 
 object RetrofitClient {
+
+    private val moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
+
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
     val api: WashingtonPostAPI by lazy {
@@ -83,7 +92,7 @@ object RetrofitClient {
 interface WashingtonPostAPI {
 
     @GET("simulation/simulation_test.json")
-    fun washingtonGetData(): ContentDTO
+    fun washingtonGetData(): Response<ContentDTO>
 }
 
 data class ContentDTO(
