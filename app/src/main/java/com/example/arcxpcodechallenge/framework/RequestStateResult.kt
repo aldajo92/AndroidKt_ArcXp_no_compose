@@ -1,4 +1,4 @@
-package com.example.arcxpcodechallenge.data.framework
+package com.example.arcxpcodechallenge.framework
 
 sealed class RequestStateResult<out T> {
     data class Success<out T>(val data: T) : RequestStateResult<T>()

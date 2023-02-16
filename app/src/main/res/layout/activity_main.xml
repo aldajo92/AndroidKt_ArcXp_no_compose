@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.MainActivity">
+    tools:context=".presentation.ui.main.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPosts"
@@ -37,15 +37,28 @@
         tools:visibility="visible" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_sort"
+        android:id="@+id/fab_sort_by_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:contentDescription="@string/sort_button_content_description"
-        android:src="@drawable/ic_sort"
+        android:contentDescription="@string/sort_button_name_content_description"
+        android:src="@drawable/ic_sort_name"
         app:backgroundTint="@color/purple_200"
         app:elevation="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:pressedTranslationZ="12dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_sort_by_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/sort_button_date_content_description"
+        android:src="@drawable/ic_sort_date"
+        app:backgroundTint="@color/purple_200"
+        app:elevation="6dp"
+        app:layout_constraintBottom_toTopOf="@id/fab_sort_by_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:pressedTranslationZ="12dp" />
 

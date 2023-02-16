@@ -1,15 +1,18 @@
-package com.example.arcxpcodechallenge.presentation
+package com.example.arcxpcodechallenge.presentation.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.arcxpcodechallenge.data.framework.onError
-import com.example.arcxpcodechallenge.data.framework.onLoading
-import com.example.arcxpcodechallenge.data.framework.onSuccess
 import com.example.arcxpcodechallenge.databinding.ActivityMainBinding
+import com.example.arcxpcodechallenge.framework.onError
+import com.example.arcxpcodechallenge.framework.onLoading
+import com.example.arcxpcodechallenge.framework.onSuccess
 import com.example.arcxpcodechallenge.presentation.adapter.PostAdapter
+import com.example.arcxpcodechallenge.presentation.ui.detail.DetailActivity
+import com.example.arcxpcodechallenge.utils.rotateFab
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,22 +32,33 @@ class MainActivity : AppCompatActivity() {
             requestStateResult.onSuccess { listPostModel ->
                 listPostModel?.let { postAdapter.updateData(it) }
                 showLoader(false)
-                showFab(true)
+                showFabs(true)
             }.onLoading {
                 showLoader(true)
-                showFab(false)
+                showFabs(false)
             }.onError {
                 showLoader(false)
-                showFab(false)
+                showFabs(false)
             }
         }
 
         binding.rvPosts.adapter = postAdapter
         binding.rvPosts.layoutManager = LinearLayoutManager(this)
 
-        binding.fabSort.setOnClickListener {
-            rotateFab()
-            postAdapter.sortItems(toggleSort)
+        postAdapter.setItemClickListener {
+            val intent = DetailActivity.newIntent(this, it.id)
+            startActivity(intent)
+        }
+
+        binding.fabSortByName.setOnClickListener {
+            binding.fabSortByName.rotateFab()
+            postAdapter.sortItemsByName(toggleSort)
+            toggleSort = !toggleSort
+        }
+
+        binding.fabSortByDate.setOnClickListener {
+            binding.fabSortByDate.rotateFab()
+            postAdapter.sortItemsByDate(toggleSort)
             toggleSort = !toggleSort
         }
 
@@ -56,21 +70,9 @@ class MainActivity : AppCompatActivity() {
         binding.loaderBackground.visibility = if (show) View.VISIBLE else View.GONE
     }
 
-    private fun showFab(show: Boolean) {
-        binding.fabSort.visibility = if (show) View.VISIBLE else View.GONE
-    }
-
-    private fun rotateFab() {
-        binding.fabSort.animate()
-            .scaleX(-1f)
-            .setDuration(200)
-            .withEndAction {
-                binding.fabSort.animate()
-                    .scaleX(1f)
-                    .setDuration(200)
-                    .start()
-            }
-            .start()
+    private fun showFabs(show: Boolean) {
+        binding.fabSortByName.visibility = if (show) View.VISIBLE else View.GONE
+        binding.fabSortByDate.visibility = if (show) View.VISIBLE else View.GONE
     }
 
 }

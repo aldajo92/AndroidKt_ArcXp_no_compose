@@ -1,10 +1,11 @@
 package com.example.arcxpcodechallenge.data.repositories
 
-import com.example.arcxpcodechallenge.data.framework.RequestStateResult
-import com.example.arcxpcodechallenge.data.framework.dto.PostContentDTO
-import com.example.arcxpcodechallenge.data.framework.dto.PostDataDTO
-import com.example.arcxpcodechallenge.data.framework.networking.WashingtonPostAPI
+import com.example.arcxpcodechallenge.framework.RequestStateResult
+import com.example.arcxpcodechallenge.framework.dto.PostContentDTO
+import com.example.arcxpcodechallenge.framework.dto.PostDataDTO
+import com.example.arcxpcodechallenge.framework.networking.WashingtonPostAPI
 import com.example.arcxpcodechallenge.data.models.PostModel
+import com.example.arcxpcodechallenge.data.repositories.PostsRepositoryImpl
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi

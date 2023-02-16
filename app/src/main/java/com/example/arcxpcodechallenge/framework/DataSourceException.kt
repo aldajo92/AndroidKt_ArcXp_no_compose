@@ -1,4 +1,4 @@
-package com.example.arcxpcodechallenge.data.framework
+package com.example.arcxpcodechallenge.framework
 
 sealed class DataSourceException(
     val messageResource: Any?

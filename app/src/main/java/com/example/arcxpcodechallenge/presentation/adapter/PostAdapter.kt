@@ -3,30 +3,42 @@ package com.example.arcxpcodechallenge.presentation.adapter
 import android.os.Build
 import android.text.Html
 import android.text.Html.FROM_HTML_OPTION_USE_CSS_COLORS
-import android.text.Html.ImageGetter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.arcxpcodechallenge.R
 import com.example.arcxpcodechallenge.data.models.PostModel
 
-
 class PostAdapter(
-    private var listPostData: List<PostModel> = listOf()
+    private var listPostData: List<PostModel> = listOf(),
 ) : RecyclerView.Adapter<PostViewHolder>() {
+
+    private var onItemClick: (PostModel) -> Unit = {}
+
+    fun setItemClickListener(listener: (PostModel) -> Unit) {
+        this.onItemClick = listener
+    }
 
     fun updateData(newList: List<PostModel>) {
         listPostData = newList
         notifyDataSetChanged()
     }
 
-    fun sortItems(ascendent: Boolean) {
-        listPostData = if (ascendent) listPostData.sortedBy {
+    fun sortItemsByName(ascendant: Boolean) {
+        listPostData = if (ascendant) listPostData.sortedBy {
             it.title
         } else listPostData.sortedByDescending {
             it.title
+        }
+        notifyDataSetChanged()
+    }
+
+    fun sortItemsByDate(ascendant: Boolean) {
+        listPostData = if (ascendant) listPostData.sortedBy {
+            it.date
+        } else listPostData.sortedByDescending {
+            it.date
         }
         notifyDataSetChanged()
     }
@@ -39,6 +51,7 @@ class PostAdapter(
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = listPostData[position]
         holder.bind(post)
+        holder.bindClick(onItemClick)
     }
 
     override fun getItemCount(): Int = listPostData.size
