@@ -1,9 +1,9 @@
 package com.example.arcxpcodechallenge.utils
 
 import com.example.arcxpcodechallenge.data.models.PostModel
-import com.example.arcxpcodechallenge.data.framework.dto.WashingtonPostDataDTO
+import com.example.arcxpcodechallenge.data.framework.dto.PostDataDTO
 
-fun WashingtonPostDataDTO.toWashingtonPostData(): PostModel {
+fun PostDataDTO.toWashingtonPostData(): PostModel {
     return PostModel(
         id = this.id,
         title = this.title,
