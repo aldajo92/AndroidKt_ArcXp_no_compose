@@ -1,7 +1,7 @@
 package com.example.arcxpcodechallenge.utils
 
 import com.example.arcxpcodechallenge.framework.dto.PostDataDTO
-import com.example.arcxpcodechallenge.data.models.PostModel
+import com.example.arcxpcodechallenge.data.PostModel
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

@@ -4,8 +4,8 @@ import com.example.arcxpcodechallenge.framework.RequestStateResult
 import com.example.arcxpcodechallenge.framework.dto.PostContentDTO
 import com.example.arcxpcodechallenge.framework.dto.PostDataDTO
 import com.example.arcxpcodechallenge.framework.networking.WashingtonPostAPI
-import com.example.arcxpcodechallenge.data.models.PostModel
-import com.example.arcxpcodechallenge.data.repositories.PostsRepositoryImpl
+import com.example.arcxpcodechallenge.data.PostModel
+import com.example.arcxpcodechallenge.repositories.PostsRepositoryImpl
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -14,7 +14,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import java.util.*
 import kotlin.random.Random
 
 @ExperimentalCoroutinesApi

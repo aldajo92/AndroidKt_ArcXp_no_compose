@@ -1,15 +1,13 @@
-package com.example.arcxpcodechallenge.data.repositories
+package com.example.arcxpcodechallenge.repositories
 
 import com.example.arcxpcodechallenge.framework.RequestStateResult
-import com.example.arcxpcodechallenge.framework.networking.RetrofitClient
 import com.example.arcxpcodechallenge.framework.networking.WashingtonPostAPI
-import com.example.arcxpcodechallenge.data.models.PostModel
+import com.example.arcxpcodechallenge.data.PostModel
 import com.example.arcxpcodechallenge.utils.toWashingtonPostData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class PostsRepositoryImpl(private val api: WashingtonPostAPI = RetrofitClient.api) :
-    PostsRepository {
+class PostsRepositoryImpl(private val api: WashingtonPostAPI) : PostsRepository {
 
     private var postMap: Map<Int, PostModel>? = null
 

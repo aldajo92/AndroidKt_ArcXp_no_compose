@@ -1,4 +1,4 @@
-package com.example.arcxpcodechallenge.data.models
+package com.example.arcxpcodechallenge.data
 
 data class PostModel(
     val id: Int = -1,

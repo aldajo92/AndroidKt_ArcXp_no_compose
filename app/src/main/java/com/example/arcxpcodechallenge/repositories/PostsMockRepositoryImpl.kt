@@ -1,9 +1,9 @@
-package com.example.arcxpcodechallenge.data.repositories
+package com.example.arcxpcodechallenge.repositories
 
 import com.example.arcxpcodechallenge.framework.RequestStateResult
 import com.example.arcxpcodechallenge.utils.getObjectFromResourcesPath
 import com.example.arcxpcodechallenge.framework.dto.PostContentDTO
-import com.example.arcxpcodechallenge.data.models.PostModel
+import com.example.arcxpcodechallenge.data.PostModel
 import com.example.arcxpcodechallenge.utils.toWashingtonPostData
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
