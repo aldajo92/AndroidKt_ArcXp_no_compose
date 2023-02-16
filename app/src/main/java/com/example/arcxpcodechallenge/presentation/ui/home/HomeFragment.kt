@@ -1,4 +1,4 @@
-package com.example.arcxpcodechallenge.presentation.ui
+package com.example.arcxpcodechallenge.presentation.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,6 +15,7 @@ import com.example.arcxpcodechallenge.R
 import com.example.arcxpcodechallenge.databinding.FragmentHomeBinding
 import com.example.arcxpcodechallenge.presentation.adapter.PostAdapter
 import com.example.arcxpcodechallenge.presentation.models.UIState
+import com.example.arcxpcodechallenge.presentation.ui.main.ConnectionLiveData
 import com.example.arcxpcodechallenge.presentation.ui.main.MainViewModel
 import com.example.arcxpcodechallenge.utils.rotateFab
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private val viewModel by viewModels<MainViewModel>()
+    private lateinit var connectionLiveData: ConnectionLiveData
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -37,13 +39,13 @@ class HomeFragment : Fragment() {
     ): View {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        connectionLiveData = ConnectionLiveData(binding.root.context)
         return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initLiveDataSubscriptions()
         initViews()
     }
@@ -71,6 +73,11 @@ class HomeFragment : Fragment() {
                     showLoader(false)
                     showFabs(false)
                 }
+            }
+        }
+        connectionLiveData.observe(viewLifecycleOwner) { isNetworkAvailable ->
+            isNetworkAvailable?.let {
+                if (it) viewModel.getPosts()
             }
         }
     }

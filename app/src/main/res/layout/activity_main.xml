@@ -18,5 +18,40 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/nav_graph" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_no_internet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/textView_no_internet"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/no_internet_connection"
+        android:visibility="gone"
+        android:translationZ="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/imageView_no_internet"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/sad_logo"
+        android:visibility="gone"
+        android:translationZ="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView_no_internet"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_no_internet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="imageView_no_internet,textView_no_internet, cardView_no_internet">
+
+    </androidx.constraintlayout.widget.Group>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
