@@ -11,8 +11,7 @@ import kotlinx.coroutines.flow.flow
 class DataRepositoryImpl(private val api: WashingtonPostAPI = RetrofitClient.api) : DataRepository {
 
     override fun getData(): Flow<List<PostModel>?> = flow {
-        // TODO: Improve this later
-        val washingtonPostData = api.washingtonGetData()
+        val washingtonPostData = api.getSimulationTestData()
         val body = washingtonPostData.body()
         Log.i("DataRepositoryImpl", "washingtonPostData: $body")
         emit(washingtonPostData.body()?.posts?.map { it.toWashingtonPostData() })

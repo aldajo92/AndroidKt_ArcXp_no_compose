@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface WashingtonPostAPI {
 
-    @GET("simulation/simulation_test.json")
-    fun washingtonGetData(): Response<ContentDTO>
+    @GET("wp-srv/simulation/simulation_test.json")
+    suspend fun getSimulationTestData(): Response<ContentDTO>
 
 }
