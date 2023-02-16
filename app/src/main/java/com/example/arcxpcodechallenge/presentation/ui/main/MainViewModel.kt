@@ -23,7 +23,7 @@ class MainViewModel @Inject constructor(
                 val processedData = it.data?.map { post -> post.toUIModel() } ?: emptyList()
                 UIState.Success(processedData)
             }
-            is RequestStateResult.Error -> UIState.Error("Error")
+            else -> UIState.Error("Error")
         }
     }
 

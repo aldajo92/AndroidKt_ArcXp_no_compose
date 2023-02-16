@@ -4,6 +4,7 @@ sealed class RequestStateResult<out T> {
     data class Success<out T>(val data: T) : RequestStateResult<T>()
     data class Error(val exception: DataSourceException) : RequestStateResult<Nothing>()
     object Loading : RequestStateResult<Nothing>()
+    object NoInternet : RequestStateResult<Nothing>()
 }
 
 inline fun <T : Any> RequestStateResult<T?>.onSuccess(action: (T?) -> Unit): RequestStateResult<T?> {
