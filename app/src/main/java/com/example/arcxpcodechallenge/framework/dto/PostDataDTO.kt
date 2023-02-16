@@ -1,4 +1,4 @@
-package com.example.arcxpcodechallenge.data.framework.dto
+package com.example.arcxpcodechallenge.framework.dto
 
 import com.squareup.moshi.Json
 

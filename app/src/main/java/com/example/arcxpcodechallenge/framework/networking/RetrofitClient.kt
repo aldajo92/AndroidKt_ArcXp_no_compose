@@ -1,4 +1,4 @@
-package com.example.arcxpcodechallenge.data.framework.networking
+package com.example.arcxpcodechallenge.framework.networking
 
 import com.example.arcxpcodechallenge.BuildConfig
 import com.squareup.moshi.Moshi
