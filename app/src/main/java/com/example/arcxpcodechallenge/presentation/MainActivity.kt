@@ -1,11 +1,13 @@
 package com.example.arcxpcodechallenge.presentation
 
 import android.os.Bundle
-import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.arcxpcodechallenge.data.models.PostModel
+import com.example.arcxpcodechallenge.data.framework.onError
+import com.example.arcxpcodechallenge.data.framework.onLoading
+import com.example.arcxpcodechallenge.data.framework.onSuccess
 import com.example.arcxpcodechallenge.databinding.ActivityMainBinding
 import com.example.arcxpcodechallenge.presentation.adapter.PostAdapter
 
@@ -23,13 +25,14 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        viewModel.dataLiveData.observe(this) {
-            when (it) {
-                is List<PostModel> -> {
-                    postAdapter.updateData(it)
-                    Log.i("MainActivity", "WashingtonPostData: $it")
-                }
-                else -> {} // handle null
+        viewModel.dataLiveData.observe(this) { requestStateResult ->
+            requestStateResult.onSuccess { listPostModel ->
+                listPostModel?.let { postAdapter.updateData(it) }
+                showLoader(false)
+            }.onLoading {
+                showLoader(true)
+            }.onError {
+                showLoader(false)
             }
         }
 
@@ -38,4 +41,10 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
     }
+
+    private fun showLoader(show: Boolean) {
+        binding.progressBar.visibility = if (show) View.VISIBLE else View.GONE
+        binding.loaderBackground.visibility = if (show) View.VISIBLE else View.GONE
+    }
+
 }

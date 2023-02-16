@@ -1,5 +1,6 @@
 package com.example.arcxpcodechallenge.data.repositories
 
+import com.example.arcxpcodechallenge.data.framework.RequestStateResult
 import com.example.arcxpcodechallenge.data.framework.dto.PostContentDTO
 import com.example.arcxpcodechallenge.data.framework.dto.PostDataDTO
 import com.example.arcxpcodechallenge.data.framework.networking.WashingtonPostAPI
@@ -29,9 +30,11 @@ class PostsRepositoryImplTest {
         coEvery { mockApi.getSimulationTestData().body() } returns mockPost
 
         val resultList = mutableListOf<PostModel>()
-        val flowData = postsRepositoryImpl.getPosts()
+        val flowData = postsRepositoryImpl.getPostsFlow()
         flowData.collect {
-            resultList.addAll(it!!)
+            if(it is RequestStateResult.Success){
+                resultList.addAll(it.data ?: listOf())
+            }
         }
         assertEquals(10, resultList.size)
     }
