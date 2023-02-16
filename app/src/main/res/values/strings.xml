@@ -2,4 +2,7 @@
     <string name="app_name">ArcXPCodeChallenge</string>
     <string name="sort_button_name_content_description">Sort button by name</string>
     <string name="sort_button_date_content_description">Sort button by date</string>
+
+    <string name="main_fragment_label">Main Fragment</string>
+    <string name="detail_fragment_label">Detail Fragment</string>
 </resources>

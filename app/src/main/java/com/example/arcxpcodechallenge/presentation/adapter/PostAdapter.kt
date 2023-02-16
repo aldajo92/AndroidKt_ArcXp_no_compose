@@ -8,19 +8,20 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.arcxpcodechallenge.R
-import com.example.arcxpcodechallenge.data.models.PostModel
+import com.example.arcxpcodechallenge.presentation.models.PostUIModel
+import com.example.arcxpcodechallenge.utils.sortByDate
 
 class PostAdapter(
-    private var listPostData: List<PostModel> = listOf(),
+    private var listPostData: List<PostUIModel> = listOf(),
 ) : RecyclerView.Adapter<PostViewHolder>() {
 
-    private var onItemClick: (PostModel) -> Unit = {}
+    private var onItemClick: (PostUIModel) -> Unit = {}
 
-    fun setItemClickListener(listener: (PostModel) -> Unit) {
+    fun setItemClickListener(listener: (PostUIModel) -> Unit) {
         this.onItemClick = listener
     }
 
-    fun updateData(newList: List<PostModel>) {
+    fun updateData(newList: List<PostUIModel>) {
         listPostData = newList
         notifyDataSetChanged()
     }
@@ -35,11 +36,7 @@ class PostAdapter(
     }
 
     fun sortItemsByDate(ascendant: Boolean) {
-        listPostData = if (ascendant) listPostData.sortedBy {
-            it.date
-        } else listPostData.sortedByDescending {
-            it.date
-        }
+        listPostData = listPostData.sortByDate(ascendant)
         notifyDataSetChanged()
     }
 
