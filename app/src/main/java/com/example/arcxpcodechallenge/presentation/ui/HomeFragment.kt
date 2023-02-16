@@ -9,6 +9,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.arcxpcodechallenge.R
 import com.example.arcxpcodechallenge.databinding.FragmentHomeBinding
@@ -76,6 +77,7 @@ class HomeFragment : Fragment() {
 
     private fun initViews() {
         binding.rvPosts.adapter = postAdapter
+        binding.rvPosts.itemAnimator = DefaultItemAnimator()
         binding.rvPosts.layoutManager = LinearLayoutManager(_binding?.root?.context)
 
         postAdapter.setItemClickListener {
@@ -86,6 +88,7 @@ class HomeFragment : Fragment() {
         binding.fabSortByName.setOnClickListener {
             binding.fabSortByName.rotateFab()
             postAdapter.sortItemsByName(toggleSort)
+
             toggleSort = !toggleSort
         }
 

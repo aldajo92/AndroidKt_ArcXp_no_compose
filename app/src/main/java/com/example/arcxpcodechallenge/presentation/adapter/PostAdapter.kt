@@ -6,6 +6,7 @@ import android.text.Html.FROM_HTML_OPTION_USE_CSS_COLORS
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.arcxpcodechallenge.R
 import com.example.arcxpcodechallenge.presentation.models.PostUIModel
@@ -22,22 +23,27 @@ class PostAdapter(
     }
 
     fun updateData(newList: List<PostUIModel>) {
+        val diffResult = DiffUtil.calculateDiff(ItemDiffCallback(listPostData, newList))
+        diffResult.dispatchUpdatesTo(this)
         listPostData = newList
-        notifyDataSetChanged()
     }
 
     fun sortItemsByName(ascendant: Boolean) {
-        listPostData = if (ascendant) listPostData.sortedBy {
+        val sortedList = if (ascendant) listPostData.sortedBy {
             it.title
         } else listPostData.sortedByDescending {
             it.title
         }
-        notifyDataSetChanged()
+        val diffResult = DiffUtil.calculateDiff(ItemDiffCallback(listPostData, sortedList))
+        diffResult.dispatchUpdatesTo(this)
+        listPostData = sortedList
     }
 
     fun sortItemsByDate(ascendant: Boolean) {
-        listPostData = listPostData.sortByDate(ascendant)
-        notifyDataSetChanged()
+        val sortedList = listPostData.sortByDate(ascendant)
+        val diffResult = DiffUtil.calculateDiff(ItemDiffCallback(listPostData, sortedList))
+        diffResult.dispatchUpdatesTo(this)
+        listPostData = sortedList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
