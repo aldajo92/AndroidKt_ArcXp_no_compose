@@ -25,5 +25,10 @@ This application uses the most common libraries for Android projects:
 - Moshi: It is used to map the json retrieved by the server to data classes.
 - Fragment Navigation: This library allows to create a fragment flow with a single activity.
 
+# Missing changes
+- Support a better UI for tablets.
+- Store data in cache with Room.
+- Render Images in detail screen from html content.
+
 # Author
 Alejandro Daniel Jóse Gómez Flórez (@aldajo92)
