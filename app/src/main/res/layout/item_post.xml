@@ -13,6 +13,14 @@
         android:textSize="24sp"
         tools:text="Title" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:textSize="16sp"
+        tools:text="12:00:00" />
+
     <TextView
         android:id="@+id/tvBody"
         android:layout_width="match_parent"
@@ -20,21 +28,5 @@
         android:layout_marginHorizontal="16dp"
         android:textSize="16sp"
         tools:text="Body" />
-
-
-
-<!--    <FrameLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
-
-<!--        <WebView-->
-<!--            android:id="@+id/wvBody"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginHorizontal="16dp"-->
-<!--            android:textSize="16sp"-->
-<!--            tools:text="Body" />-->
-
-<!--    </FrameLayout>-->
 
 </androidx.appcompat.widget.LinearLayoutCompat>

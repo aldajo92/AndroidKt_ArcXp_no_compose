@@ -14,8 +14,7 @@ import com.example.arcxpcodechallenge.data.models.PostModel
 
 
 class PostAdapter(
-    private var listPostData: List<PostModel> = listOf(),
-    private val lifecycleCoroutineScope: LifecycleCoroutineScope
+    private var listPostData: List<PostModel> = listOf()
 ) : RecyclerView.Adapter<PostViewHolder>() {
 
     fun updateData(newList: List<PostModel>) {
@@ -25,7 +24,7 @@ class PostAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_post, parent, false)
-        return PostViewHolder(view, lifecycleCoroutineScope)
+        return PostViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
