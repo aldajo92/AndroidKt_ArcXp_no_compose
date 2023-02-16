@@ -20,4 +20,8 @@
     <style name="Theme.ArcXPCodeChallenge.AppBarOverlay"
         parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.ArcXPCodeChallenge.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="CardViewPostStyle">
+        <item name="android:backgroundTint">@color/card_color_background_light</item>
+    </style>
 </resources>
