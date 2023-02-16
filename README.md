@@ -1,8 +1,5 @@
 # ArcXP Code Challenge
 
-<<<<<<< Updated upstream
-![MarineGEO circle logo](.media/preview.gif)
-=======
 ![MarineGEO circle logo](.media/preview.gif)
 
 # Main Features
@@ -30,4 +27,3 @@ This application uses the most common libraries for Android projects:
 
 # Author
 Alejandro Daniel Jóse Gómez Flórez (@aldajo92)
->>>>>>> Stashed changes

@@ -13,4 +13,8 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="CardViewPostStyle">
+        <item name="android:backgroundTint">@color/card_color_background_dark</item>
+    </style>
 </resources>
