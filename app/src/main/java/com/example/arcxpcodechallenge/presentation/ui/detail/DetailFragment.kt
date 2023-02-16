@@ -1,27 +1,20 @@
-package com.example.arcxpcodechallenge.presentation.ui
+package com.example.arcxpcodechallenge.presentation.ui.detail
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
-import androidx.navigation.fragment.findNavController
-import com.example.arcxpcodechallenge.R
-import com.example.arcxpcodechallenge.databinding.FragmentSecondBinding
+import androidx.fragment.app.Fragment
+import com.example.arcxpcodechallenge.databinding.FragmentDetailBinding
 import com.example.arcxpcodechallenge.presentation.models.PostUIModel
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
-class SecondFragment : Fragment() {
+class DetailFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: FragmentDetailBinding? = null
     private var post: PostUIModel? = null
 
-    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -29,7 +22,7 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentDetailBinding.inflate(inflater, container, false)
         post = arguments?.get("post") as PostUIModel
 
         return binding.root
@@ -47,10 +40,6 @@ class SecondFragment : Fragment() {
             null,
             null
         )
-
-//        binding.buttonSecond.setOnClickListener {
-//            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-//        }
     }
 
     override fun onDestroyView() {

@@ -28,9 +28,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".presentation.ui.detail.DetailActivity"
-            android:exported="true" />
 
     </application>
 
