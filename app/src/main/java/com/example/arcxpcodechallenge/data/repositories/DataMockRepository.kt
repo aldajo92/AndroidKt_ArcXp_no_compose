@@ -1,6 +1,6 @@
 package com.example.arcxpcodechallenge.data.repositories
 
-import com.example.arcxpcodechallenge.getObjectFromResourcesPath
+import com.example.arcxpcodechallenge.utils.getObjectFromResourcesPath
 import com.example.arcxpcodechallenge.data.framework.dto.ContentDTO
 import com.example.arcxpcodechallenge.data.models.PostModel
 import com.example.arcxpcodechallenge.utils.toWashingtonPostData
@@ -19,4 +19,5 @@ class DataMockRepositoryImpl : DataRepository {
         val mappedObjects = mockJsonResponse.posts.map { it.toWashingtonPostData() }
         emit(mappedObjects)
     }
+
 }
