@@ -22,6 +22,15 @@ class PostAdapter(
         notifyDataSetChanged()
     }
 
+    fun sortItems(ascendent: Boolean) {
+        listPostData = if (ascendent) listPostData.sortedBy {
+            it.title
+        } else listPostData.sortedByDescending {
+            it.title
+        }
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_post, parent, false)
         return PostViewHolder(view)

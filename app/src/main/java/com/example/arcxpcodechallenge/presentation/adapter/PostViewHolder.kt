@@ -13,17 +13,17 @@ class PostViewHolder(
 ) : RecyclerView.ViewHolder(view) {
 
     private val titleTextView = view.findViewById<TextView>(R.id.tvTitle)
-    private val contentTextView = view.findViewById<TextView>(R.id.tvBody)
+//    private val contentTextView = view.findViewById<TextView>(R.id.tvBody)
     private val dateTextView = view.findViewById<TextView>(R.id.tvDate)
 
     fun bind(post: PostModel) {
         titleTextView.setHTMLContent(post.title)
-        contentTextView.text = HtmlCompat.fromHtml(
-            post.content,
-            HtmlCompat.FROM_HTML_SEPARATOR_LINE_BREAK_PARAGRAPH,
-            null,
-            null
-        )
+//        contentTextView.text = HtmlCompat.fromHtml(
+//            post.content,
+//            HtmlCompat.FROM_HTML_SEPARATOR_LINE_BREAK_PARAGRAPH,
+//            null,
+//            null
+//        )
         dateTextView.text = post.date.applyDateFormat(
             "yyyy-MM-dd HH:mm:ss",
             "MMM dd, yyyy"

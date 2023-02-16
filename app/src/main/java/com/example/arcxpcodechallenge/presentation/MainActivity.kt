@@ -16,9 +16,9 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
 
-    private val postAdapter by lazy {
-        PostAdapter()
-    }
+    private val postAdapter by lazy { PostAdapter() }
+
+    private var toggleSort = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,15 +29,24 @@ class MainActivity : AppCompatActivity() {
             requestStateResult.onSuccess { listPostModel ->
                 listPostModel?.let { postAdapter.updateData(it) }
                 showLoader(false)
+                showFab(true)
             }.onLoading {
                 showLoader(true)
+                showFab(false)
             }.onError {
                 showLoader(false)
+                showFab(false)
             }
         }
 
         binding.rvPosts.adapter = postAdapter
         binding.rvPosts.layoutManager = LinearLayoutManager(this)
+
+        binding.fabSort.setOnClickListener {
+            rotateFab()
+            postAdapter.sortItems(toggleSort)
+            toggleSort = !toggleSort
+        }
 
         setContentView(binding.root)
     }
@@ -45,6 +54,23 @@ class MainActivity : AppCompatActivity() {
     private fun showLoader(show: Boolean) {
         binding.progressBar.visibility = if (show) View.VISIBLE else View.GONE
         binding.loaderBackground.visibility = if (show) View.VISIBLE else View.GONE
+    }
+
+    private fun showFab(show: Boolean) {
+        binding.fabSort.visibility = if (show) View.VISIBLE else View.GONE
+    }
+
+    private fun rotateFab() {
+        binding.fabSort.animate()
+            .scaleX(-1f)
+            .setDuration(200)
+            .withEndAction {
+                binding.fabSort.animate()
+                    .scaleX(1f)
+                    .setDuration(200)
+                    .start()
+            }
+            .start()
     }
 
 }
